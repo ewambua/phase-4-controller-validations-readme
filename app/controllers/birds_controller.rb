@@ -9,7 +9,8 @@ class BirdsController < ApplicationController
 
   # POST /birds
   def create
-    bird = Bird.create(bird_params)
+    # create! exceptions will be handled by the rescue_from ActiveRecord::RecordInvalid code
+    bird = Bird.create!(bird_params)
     render json: bird, status: :created
   end
 
@@ -22,7 +23,8 @@ class BirdsController < ApplicationController
   # PATCH /birds/:id
   def update
     bird = find_bird
-    bird.update(bird_params)
+    # update! exceptions will be handled by the rescue_from ActiveRecord::RecordInvalid code
+    bird.update!(bird_params)
     render json: bird
   end
 
